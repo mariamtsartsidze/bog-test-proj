@@ -1,0 +1,39 @@
+{
+  "transactions": [
+    {
+      "title": "tester1",
+      "category": "payment service",
+      "execDate": "01/01/1990",
+      "comment": "dumb comment opana",
+      "ammount": 100
+    },
+    {
+      "title": "tester2",
+      "category": "gasoline",
+      "execDate": "02/01/1990",
+      "comment": "dumb comment opana",
+      "ammount": 101
+    },
+    {
+      "title": "tester3",
+      "category": "food",
+      "execDate": "03/01/1990",
+      "comment": "dumb comment opana",
+      "ammount": 102
+    },
+    {
+      "title": "tester4",
+      "category": "charity",
+      "execDate": "04/01/1990",
+      "comment": "dumb comment opana",
+      "ammount": 103
+    },
+    {
+      "title": "tester4",
+      "category": "transport",
+      "execDate": "05/01/1990",
+      "comment": "dumb comment opana",
+      "ammount": 104
+    }
+  ]
+}

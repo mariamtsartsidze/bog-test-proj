@@ -1,13 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const _ = require("lodash");
+const store = require("./starterTransactions");
 const port = 3000;
 
 const app = express();
 app.use(bodyParser.json());
 
-const store = {};
-store.transactions = [];
+// const store = {};
+// store.transactions = [];
 
 app.get("/transactions", (req, res) => {
   console.log("get transactions: ", req.query);
