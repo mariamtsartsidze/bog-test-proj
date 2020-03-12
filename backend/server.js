@@ -19,7 +19,9 @@ app.get("/transactions", (req, res) => {
       transaction.comment.includes(req.query.comment) ||
       transaction.category.includes(req.query.category)
     )
-  res.status(200).send({ transactions: filteredTransactions });
+  res.status(200);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send({ transactions: filteredTransactions });
 });
 
 
@@ -33,7 +35,9 @@ app.post("/transactions", (req, res) => {
   newAccount.id = newAccountId;
 
   store.transactions.push(newAccount);
-  res.status(200).send({ id: newAccountId });
+  res.status(200);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send({ id: newAccountId });
 });
 
 
@@ -43,7 +47,9 @@ app.put("/transactions/:id", (req, res) => {
   transactionId = +req.params.id
   let indexToUpdate = store.transactions.findIndex((transaction) => transaction.id === transactionId)
   Object.assign(store.transactions[indexToUpdate], req.body);
-  res.status(200).send({ value: store.transactions[indexToUpdate] });
+  res.status(200);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send({ value: store.transactions[indexToUpdate] });
 });
 
 
@@ -51,7 +57,9 @@ app.delete("/transactions/:id", (req, res) => {
   console.log("transaction deleted: ", req.params)
 
   store.transactions = store.transactions.filter(transaction => transaction.id !== +req.params.id);
-  res.status(200).send();
+  res.status(200);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.send();
 });
 
 

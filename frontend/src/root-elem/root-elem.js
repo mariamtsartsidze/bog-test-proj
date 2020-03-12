@@ -5,6 +5,18 @@ import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
  * @polymer
  */
 class RootElem extends PolymerElement {
+  constructor() {
+    super();
+    var req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('GET', 'http://localhost:3000/transactions', true);
+    req.onload = function () {
+      var jsonResponse = req.response;
+      console.log('resp: ', jsonResponse);
+    };
+    req.send(null);
+  }
+
   static get template() {
     return html`
       <style>

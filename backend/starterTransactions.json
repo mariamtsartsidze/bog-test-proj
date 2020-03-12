@@ -1,6 +1,7 @@
 {
   "transactions": [
     {
+      "id": 1,
       "title": "tester1",
       "category": "payment service",
       "execDate": "01/01/1990",
@@ -8,6 +9,7 @@
       "ammount": 100
     },
     {
+      "id": 2,
       "title": "tester2",
       "category": "gasoline",
       "execDate": "02/01/1990",
@@ -15,6 +17,7 @@
       "ammount": 101
     },
     {
+      "id": 3,
       "title": "tester3",
       "category": "food",
       "execDate": "03/01/1990",
@@ -22,6 +25,7 @@
       "ammount": 102
     },
     {
+      "id": 4,
       "title": "tester4",
       "category": "charity",
       "execDate": "04/01/1990",
@@ -29,6 +33,7 @@
       "ammount": 103
     },
     {
+      "id": 5,
       "title": "tester4",
       "category": "transport",
       "execDate": "05/01/1990",
