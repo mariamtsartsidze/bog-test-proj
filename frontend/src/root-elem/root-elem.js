@@ -1,4 +1,5 @@
 import { LitElement, css, html } from 'lit-element';
+import '../transaction/transaction';
 /**
  * @customElement
  * @polymer
@@ -39,12 +40,9 @@ class RootElem extends LitElement {
 
   static get styles() {
     return css`
-      :host {
-        display: block;
-      }
       .header {
-        background-color: #f5fafa;
-        height: 6vh;
+        background-color: white;
+        height: 4vh;
         font-size: 13px;
         display: flex;
         flex-direction: row;
@@ -53,10 +51,10 @@ class RootElem extends LitElement {
         color: grey;
       }
       .footer {
-        background-color: #f5fafa;
-        height: 9vh;
+        background-color: white;
+        height: 7.4vh;
         text-align: center;
-        font-size: 14px;
+        font-size: 10px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -64,9 +62,33 @@ class RootElem extends LitElement {
         color: grey;
       }
       .section {
+        position: relative;
         width: 100vw;
-        height: 85vh;
+        height: 88.6vh;
         background-color: #d2ddeb;
+      }
+      .main-content {
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 44vw;
+        height: 56.1vh;
+      }
+      .list-actions {
+        height: 11%;
+        background-color: white;
+      }
+      .records-num {
+        height: 9%;
+      }
+      .cards-holder {
+        height: 70%;
+        background-color: white;
+      }
+      .list-footer {
+        height: 10%;
+        background-color: #a1c4ff;
       }
     `;
   }
@@ -77,7 +99,14 @@ class RootElem extends LitElement {
         <div>hello user</div>
       </div>
       <div class="section">
-        ${this.transactions.map(i => html`<div>${i}</div>`)}
+        <div class="main-content">
+          <div class="list-actions"></div>
+          <div class="records-num"></div>
+          <div class="cards-holder">
+            ${this.transactions.map(i => html`<transaction-elem .transaction=${i}> </transaction-elem>`)}
+          </div>
+          <div class="list-footer"></div>
+        </div>
       </div>
       <div class="footer">
         <div>
