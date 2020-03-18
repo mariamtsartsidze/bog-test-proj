@@ -1,5 +1,9 @@
 import { LitElement, css, html } from 'lit-element';
 import '../transaction/transaction';
+
+// import '@polymer/iron-icon/iron-icon.js';
+// import '@polymer/iron-icons/iron-icons.js';
+
 /**
  * @customElement
  * @polymer
@@ -78,6 +82,9 @@ class RootElem extends LitElement {
       .list-actions {
         height: 11%;
         background-color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
       .records-num {
         height: 9%;
@@ -90,6 +97,36 @@ class RootElem extends LitElement {
         height: 10%;
         background-color: #a1c4ff;
       }
+      .btn {
+        margin-left: 2px;
+        background-color: white; /* Blue background */
+        border: none; /* Remove borders */
+        color: #a7bedb; /* White text */
+        padding: 8px 10px;
+        font-size: 7px;
+        font-weight: bold;
+        cursor: pointer; /* Mouse pointer on hover */
+        outline: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      /* Darker background on mouse-over */
+      .btn:hover {
+        background-color: #f0f0f0;
+      }
+
+      .btn:active {
+        transform: translateY(3px);
+      }
+
+      .add-icon {
+        width: 28px;
+        height: 28px;
+        margin-right: 3px;
+      }
     `;
   }
 
@@ -100,7 +137,12 @@ class RootElem extends LitElement {
       </div>
       <div class="section">
         <div class="main-content">
-          <div class="list-actions"></div>
+          <div class="list-actions">
+            <button class="btn">
+              <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>
+              <div>ADD PAYMENT</div>
+            </button>
+          </div>
           <div class="records-num"></div>
           <div class="cards-holder">
             ${this.transactions.map(i => html`<transaction-elem .transaction=${i}> </transaction-elem>`)}
