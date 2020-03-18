@@ -99,14 +99,16 @@ class RootElem extends LitElement {
       }
       .btn {
         margin-left: 2px;
+        margin-right: 2px;
         background-color: white; /* Blue background */
         border: none; /* Remove borders */
-        color: #a7bedb; /* White text */
+        color: #a1c4ff; /* White text */
         padding: 8px 10px;
         font-size: 7px;
         font-weight: bold;
         cursor: pointer; /* Mouse pointer on hover */
         outline: none;
+        border-radius: 3px;
 
         display: flex;
         flex-direction: row;
@@ -115,7 +117,7 @@ class RootElem extends LitElement {
 
       /* Darker background on mouse-over */
       .btn:hover {
-        background-color: #f0f0f0;
+        background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
       }
 
       .btn:active {
@@ -126,6 +128,11 @@ class RootElem extends LitElement {
         width: 28px;
         height: 28px;
         margin-right: 3px;
+      }
+
+      .vl {
+        height: 70%;
+        border-left: 1px solid #ededed;
       }
     `;
   }
@@ -142,6 +149,7 @@ class RootElem extends LitElement {
               <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>
               <div>ADD PAYMENT</div>
             </button>
+            <div class="vl"></div>
           </div>
           <div class="records-num"></div>
           <div class="cards-holder">
