@@ -1,5 +1,7 @@
 import { LitElement, css, html } from 'lit-element';
 import '../transaction/transaction';
+import { genericButtonStyles } from '../styles/btn-generic';
+import { layoutStyles } from '../styles/layout';
 
 // import '@polymer/iron-icon/iron-icon.js';
 // import '@polymer/iron-icons/iron-icons.js';
@@ -43,98 +45,113 @@ class RootElem extends LitElement {
   }
 
   static get styles() {
-    return css`
-      .header {
-        background-color: white;
-        height: 4vh;
-        font-size: 13px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        color: grey;
-      }
-      .footer {
-        background-color: white;
-        height: 7.4vh;
-        text-align: center;
-        font-size: 10px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        color: grey;
-      }
-      .section {
-        position: relative;
-        width: 100vw;
-        height: 88.6vh;
-        background-color: #d2ddeb;
-      }
-      .main-content {
-        position: absolute;
-        top: 3%;
-        left: 50%;
-        transform: translate(-50%);
-        width: 44vw;
-        height: 56.1vh;
-      }
-      .list-actions {
-        height: 11%;
-        background-color: white;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-      .records-num {
-        height: 9%;
-      }
-      .cards-holder {
-        height: 70%;
-        background-color: white;
-      }
-      .list-footer {
-        height: 10%;
-        background-color: #a1c4ff;
-      }
-      .btn {
-        margin-left: 2px;
-        margin-right: 2px;
-        background-color: white; /* Blue background */
-        border: none; /* Remove borders */
-        color: #a1c4ff; /* White text */
-        padding: 8px 10px;
-        font-size: 7px;
-        font-weight: bold;
-        cursor: pointer; /* Mouse pointer on hover */
-        outline: none;
-        border-radius: 3px;
+    return [
+      genericButtonStyles,
+      layoutStyles,
+      css`
+        .list-actions {
+          height: 11%;
+          background-color: white;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
+        .records-num {
+          height: 9%;
+        }
 
-      /* Darker background on mouse-over */
-      .btn:hover {
-        background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
-      }
+        .cards-holder {
+          height: 70%;
+          background-color: white;
+        }
+        
+        .list-footer {
+          height: 10%;
+          background-color: #a1c4ff;
+        }
 
-      .btn:active {
-        transform: translateY(3px);
-      }
+        .add-button {
+          margin-left: 2px;
+          margin-right: 2px;
+          background-color: white; /* Blue background */
+          color: #a1c4ff; /* White text */
+          padding: 8px 10px;
+          font-size: 7px;
+          border-radius: 3px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
 
-      .add-icon {
-        width: 28px;
-        height: 28px;
-        margin-right: 3px;
-      }
+        /* Darker background on mouse-over */
+        .add-button:hover {
+          background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
+        }
 
-      .vl {
-        height: 70%;
-        border-left: 1px solid #ededed;
-      }
-    `;
+        .add-icon {
+          width: 28px;
+          height: 28px;
+          margin-right: 3px;
+        }
+
+        .vertical-divider {
+          height: 70%;
+          border-left: 1px solid #ededed;
+        }
+
+        .search-space {
+          display: flex;
+          width: 140px;
+          height: 100%;
+        }
+
+        .filter-space {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 108px;
+          height: 100%;
+        }
+
+        .filter-button {
+          background-color: #a7bedb;
+          color: white;
+          width: 80px;
+          height: 20px;
+          border-radius: 10px;
+        }
+
+        .input-container {
+          display: -ms-flexbox; /* IE10 */
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          color: #cccccc;
+        }
+
+        .input-field {
+          width: 100%;
+          outline: none;
+          border: none;
+          font-size: 9px;
+        }
+
+        .input-icon {
+          width: 32px;
+          height: 32px;
+          margin-left: 8px;
+          margin-right: 2px;
+        }
+
+        ::placeholder {
+          color: #cccccc;
+        }
+      `
+    ];
   }
 
   render() {
@@ -145,11 +162,23 @@ class RootElem extends LitElement {
       <div class="section">
         <div class="main-content">
           <div class="list-actions">
-            <button class="btn">
+            <button class="add-button btn-generic">
               <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>
               <div>ADD PAYMENT</div>
             </button>
-            <div class="vl"></div>
+            <div class="vertical-divider"></div>
+            <div style="flex-grow: 1"></div>
+            <div class="vertical-divider"></div>
+            <div class="search-space">
+              <div class="input-container">
+                <iron-icon class="input-icon" icon="search"></iron-icon>
+                <input class="input-field" type="text" placeholder="filter by any property..." name="usrnm">
+              </div>
+            </div>
+            <div class="vertical-divider"></div>
+            <div class="filter-space">
+              <button class="filter-button btn-generic">Filter</button>
+            </div>
           </div>
           <div class="records-num"></div>
           <div class="cards-holder">
