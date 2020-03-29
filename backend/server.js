@@ -15,9 +15,9 @@ app.get("/transactions", (req, res) => {
 
   let filteredTransactions = _.isEmpty(req.query) ?
     store.transactions : store.transactions.filter(transaction =>
-      transaction.title.includes(req.query.title) ||
-      transaction.comment.includes(req.query.comment) ||
-      transaction.category.includes(req.query.category)
+      transaction.title.includes(req.query.filter) ||
+      transaction.comment.includes(req.query.filter) ||
+      transaction.category.includes(req.query.filter)
     )
   res.status(200);
   res.setHeader("Access-Control-Allow-Origin", "*");

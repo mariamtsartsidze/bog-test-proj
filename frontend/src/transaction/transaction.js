@@ -1,4 +1,4 @@
-import { LitElement, css, html } from 'lit-element';
+import { LitElement, css, html, unsafeCSS } from 'lit-element';
 /**
  * @customElement
  * @polymer
@@ -7,6 +7,7 @@ class TransactionElem extends LitElement {
   static get properties() {
     return {
       transaction: { type: Object },
+      open: { type: Boolean },
     };
   }
 
@@ -16,15 +17,24 @@ class TransactionElem extends LitElement {
 
   static get styles() {
     return css`
-      :host {
+      .host {
+        width: 100%;
         display: block;
+      }
+      .open {
+        height: 34%;
+        background-color: #f3f4f8;
+      }
+      .closed {
+        height: 18%;
+        background-color: white;
       }
     `;
   }
 
   render() {
     return html`
-      <div>${this.transaction.title} -- ${this.transaction.category}</div>
+      <div class="${this.open ? 'open' : 'closed'} host">${this.transaction.title} -- ${this.transaction.category} -- ${this.open}</div>
     `;
   }
 

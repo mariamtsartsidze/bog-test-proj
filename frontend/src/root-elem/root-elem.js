@@ -3,37 +3,30 @@ import '../transaction/transaction';
 import { genericButtonStyles } from '../styles/btn-generic';
 import { layoutStyles } from '../styles/layout';
 
-// import '@polymer/iron-icon/iron-icon.js';
-// import '@polymer/iron-icons/iron-icons.js';
 
-/**
- * @customElement
- * @polymer
- */
 class RootElem extends LitElement {
   static get properties() {
     return {
       transactions: { type: Array },
+      filterStr: { type: String },
+      totalAmount: { type: Number },
+      openTransactionIndex: { type: Number },
     };
   }
 
   constructor() {
     super();
 
+    this._filterStr = '';
     this._transactions = [];
+    this._totalAmount = 0;
+    this._openTransactionIndex = -1;
 
-    var req = new XMLHttpRequest();
-    req.responseType = 'json';
-    req.open('GET', 'http://localhost:3000/transactions', true);
-    req.onload = () => {
-      this.transactions = req.response.transactions;
-      console.log('transactions: ', this.transactions);
-    };
-    req.send(null);
+    this.getFilteredTransactions();
   }
 
   set transactions(val) {
-    console.log('gonan set val: ', val);
+    console.log('gona set val: ', val);
     let oldVal = this._transactions;
     this._transactions = [...val];
     this.requestUpdate('transactions', oldVal);
@@ -42,6 +35,70 @@ class RootElem extends LitElement {
   get transactions() {
     console.log('im getting: ', this._transactions);
     return this._transactions;
+  }
+
+  set filterStr(val) {
+    console.log('setting filterstr: ', val);
+    this._filterStr = val;
+  }
+
+  get filterStr() {
+    console.log('getting filterstr');
+    return this._filterStr;
+  }
+
+  set totalAmount(val) {
+    let oldVal = this._totalAmount;
+    this._totalAmount = val;
+    this.requestUpdate('totalAmount', oldVal);
+  }
+
+  get totalAmount() {
+    return this._totalAmount.toFixed(2);
+  }
+
+  set openTransactionIndex(val) {
+    let oldVal = this._openTransactionIndex;
+    if (this._openTransactionIndex === val) {
+      this._openTransactionIndex = -1;
+    } else {
+      this._openTransactionIndex = val;
+    }
+    this.requestUpdate('openTransactionIndex', oldVal);
+  }
+
+  get openTransactionIndex() {
+    return this._openTransactionIndex;
+  }
+
+  handleInput(e) {
+    this.filterStr = e.target.value;
+  }
+
+  getFilteredTransactions() {
+    var req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('GET', `http://localhost:3000/transactions?filter=${this.filterStr}`, true);
+    req.onload = () => {
+      this.transactions = req.response.transactions;
+      console.log('transactions: ', this.transactions);
+      this.updatetotalAmount();
+    };
+    req.send(null);
+  }
+
+  updatetotalAmount() {
+    let total = 0;
+    this.transactions.forEach(val => {
+      total += val.amount;
+      console.log(total);
+    });
+    this.totalAmount = total;
+  }
+
+  transactionClicked(index) {
+    console.log(index);
+    this.openTransactionIndex = index;
   }
 
   static get styles() {
@@ -64,18 +121,25 @@ class RootElem extends LitElement {
         .cards-holder {
           height: 70%;
           background-color: white;
+          overflow-y: auto;
         }
         
         .list-footer {
           height: 10%;
           background-color: #a1c4ff;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-end;
+          padding-right: 8px;
         }
 
         .add-button {
           margin-left: 2px;
           margin-right: 2px;
-          background-color: white; /* Blue background */
-          color: #a1c4ff; /* White text */
+          background-color: white;
+          color: #a1c4ff;
           padding: 8px 10px;
           font-size: 7px;
           border-radius: 3px;
@@ -172,19 +236,27 @@ class RootElem extends LitElement {
             <div class="search-space">
               <div class="input-container">
                 <iron-icon class="input-icon" icon="search"></iron-icon>
-                <input class="input-field" type="text" placeholder="filter by any property..." name="usrnm">
+                <input class="input-field" type="text" placeholder="filter by any property..." .value="${this.filterStr}" @input=${this.handleInput}>
               </div>
             </div>
             <div class="vertical-divider"></div>
             <div class="filter-space">
-              <button class="filter-button btn-generic">Filter</button>
+              <button class="filter-button btn-generic" @click="${this.getFilteredTransactions}">
+                Filter
+              </button>
             </div>
           </div>
           <div class="records-num"></div>
           <div class="cards-holder">
-            ${this.transactions.map(i => html`<transaction-elem .transaction=${i}> </transaction-elem>`)}
+            ${this.transactions.map((transaction, index) => html`
+              <transaction-elem .transaction=${transaction} .open=${this.openTransactionIndex === index ? true : false} @click="${() => this.transactionClicked(index)}">
+              </transaction-elem>
+            `)}
           </div>
-          <div class="list-footer"></div>
+          <div class="list-footer">
+            <div style="font-size: 11px;">Total:</div>
+            <div style="font-size: 20px;">${this.totalAmount}</div>
+          </div>
         </div>
       </div>
       <div class="footer">
