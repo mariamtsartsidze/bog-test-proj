@@ -87,6 +87,11 @@ class RootElem extends LitElement {
     req.send(null);
   }
 
+  clearFilters() {
+    this.filterStr = '';
+    this.getFilteredTransactions();
+  }
+
   updatetotalAmount() {
     let total = 0;
     this.transactions.forEach(val => {
@@ -221,10 +226,23 @@ class RootElem extends LitElement {
         ::placeholder {
           color: #cccccc;
         }
-        
-        .author-picture {
-          width: 63px;
-          height: 62px;
+
+        .logo-header {
+          width: 44vw;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .logo-container {
+          height: 4vh;
+          cursor: pointer;
+        }
+
+        .logo {
+          height: 4vh;
+          width: 4vh;
         }
       `
     ];
@@ -233,12 +251,16 @@ class RootElem extends LitElement {
   render() {
     return html`
       <div class="header">
-        <!--<div>
-          <img class="author-picture" .src="../images/nana2.png" />-->
+        <div class="logo-header">
+          <div id="con" class="logo-container" @click="${this.clearFilters}">
+            <iron-image class="logo" sizing="contain" fade src="src/images/home.png">
+            </iron-image>
+            <paper-tooltip for="con">Reset Filters</paper-tooltip>
+          </div>
           <div>
             hello user
           </div>
-        <!--</div>-->
+        </div>
       </div>
       <div class="section">
         <div class="main-content">

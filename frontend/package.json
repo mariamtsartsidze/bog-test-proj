@@ -2,6 +2,8 @@
   "name": "frontend",
   "dependencies": {
     "@polymer/iron-icons": "^3.0.1",
+    "@polymer/iron-image": "^3.0.2",
+    "@polymer/paper-tooltip": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
     "lit-element": "^2.2.1",
     "minimist": "^1.2.5"
