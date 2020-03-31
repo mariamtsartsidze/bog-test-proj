@@ -108,7 +108,7 @@ class RootElem extends LitElement {
       css`
         .list-actions {
           height: 11%;
-          background-color: white;
+          background-color: var(--milky-white);
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -120,14 +120,14 @@ class RootElem extends LitElement {
 
         .cards-holder {
           height: 70%;
-          background-color: white;
+          background-color: var(--milky-white);
           overflow-y: auto;
         }
         
         .list-footer {
           height: 10%;
           background-color: #a1c4ff;
-          color: white;
+          color: var(--milky-white);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -138,7 +138,7 @@ class RootElem extends LitElement {
         .add-button {
           margin-left: 2px;
           margin-right: 2px;
-          background-color: white;
+          background-color: var(--milky-white);
           color: #a1c4ff;
           padding: 8px 10px;
           font-size: 7px;
@@ -150,7 +150,8 @@ class RootElem extends LitElement {
 
         /* Darker background on mouse-over */
         .add-button:hover {
-          background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
+          /*background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
+          background-color: #f5f5f5;
         }
 
         .add-icon {
@@ -162,6 +163,11 @@ class RootElem extends LitElement {
         .vertical-divider {
           height: 70%;
           border-left: 1px solid #ededed;
+        }
+
+        .horizontal-divider {
+          width: 100%;
+          border-top: 1px solid #d2ddeb;
         }
 
         .search-space {
@@ -181,7 +187,7 @@ class RootElem extends LitElement {
 
         .filter-button {
           background-color: #a7bedb;
-          color: white;
+          color: var(--milky-white);
           width: 80px;
           height: 20px;
           border-radius: 10px;
@@ -202,6 +208,7 @@ class RootElem extends LitElement {
           outline: none;
           border: none;
           font-size: 9px;
+          background-color: var(--milky-white);
         }
 
         .input-icon {
@@ -214,6 +221,11 @@ class RootElem extends LitElement {
         ::placeholder {
           color: #cccccc;
         }
+        
+        .author-picture {
+          width: 63px;
+          height: 62px;
+        }
       `
     ];
   }
@@ -221,7 +233,12 @@ class RootElem extends LitElement {
   render() {
     return html`
       <div class="header">
-        <div>hello user</div>
+        <!--<div>
+          <img class="author-picture" .src="../images/nana2.png" />-->
+          <div>
+            hello user
+          </div>
+        <!--</div>-->
       </div>
       <div class="section">
         <div class="main-content">
@@ -251,6 +268,7 @@ class RootElem extends LitElement {
             ${this.transactions.map((transaction, index) => html`
               <transaction-elem .transaction=${transaction} .open=${this.openTransactionIndex === index ? true : false} @click="${() => this.transactionClicked(index)}">
               </transaction-elem>
+              <div class="horizontal-divider"></div>
             `)}
           </div>
           <div class="list-footer">
