@@ -1,7 +1,8 @@
 import { LitElement, css, html } from 'lit-element';
-import '../transaction/transaction';
 import { genericButtonStyles } from '../styles/btn-generic';
 import { layoutStyles } from '../styles/layout';
+import '../transaction/transaction';
+import '../add-form/add-form'
 
 
 class RootElem extends LitElement {
@@ -11,6 +12,7 @@ class RootElem extends LitElement {
       filterStr: { type: String },
       totalAmount: { type: Number },
       openTransactionIndex: { type: Number },
+      addFormOpen: { type: Boolean },
     };
   }
 
@@ -21,6 +23,7 @@ class RootElem extends LitElement {
     this._transactions = [];
     this._totalAmount = 0;
     this._openTransactionIndex = -1;
+    this._addFormOpen = false;
 
     this.getFilteredTransactions();
   }
@@ -71,6 +74,17 @@ class RootElem extends LitElement {
     return this._openTransactionIndex;
   }
 
+  set addFormOpen(val) {
+    console.log('vsetav: ', val);
+    let oldVal = this._addFormOpen;
+    this._addFormOpen = val;
+    this.requestUpdate('addFormOpen', oldVal);
+  }
+
+  get addFormOpen() {
+    return this._addFormOpen;
+  }
+
   handleInput(e) {
     this.filterStr = e.target.value;
   }
@@ -104,6 +118,14 @@ class RootElem extends LitElement {
   transactionClicked(index) {
     console.log(index);
     this.openTransactionIndex = index;
+  }
+
+  turnOnOverlay() {
+    this.addFormOpen = true;
+  }
+
+  turnOffOverlay() {
+    this.addFormOpen = false;
   }
 
   static get styles() {
@@ -244,6 +266,36 @@ class RootElem extends LitElement {
           height: 4vh;
           width: 4vh;
         }
+
+        /** below - overlay component styles only */
+        .overlay {
+          position: fixed;
+          display: none;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0,0,0,0.5);
+          z-index: 2;
+        }
+
+        .overlay-form{
+          position: absolute;
+          top: 27%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+        }
+
+        .visible {
+          display: block;
+        }
+
+        .hidden {
+          display: none;
+        }
       `
     ];
   }
@@ -265,7 +317,7 @@ class RootElem extends LitElement {
       <div class="section">
         <div class="main-content">
           <div class="list-actions">
-            <button class="add-button btn-generic">
+            <button class="add-button btn-generic" @click="${this.turnOnOverlay}">
               <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>
               <div>ADD PAYMENT</div>
             </button>
@@ -303,6 +355,11 @@ class RootElem extends LitElement {
         <div>
           <div>2020</div>
           <div>payment menagement</div>
+        </div>
+      </div>
+      <div class="${this.addFormOpen ? 'visible' : 'hidden'} overlay">
+        <div class="overlay-form">
+          <add-form @form-closed="${this.turnOffOverlay}"></add-form>
         </div>
       </div>
     `;
