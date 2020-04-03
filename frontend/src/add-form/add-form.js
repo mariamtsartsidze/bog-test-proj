@@ -1,4 +1,5 @@
 import { LitElement, css, html, unsafeCSS } from 'lit-element';
+import { genericButtonStyles } from '../styles/btn-generic';
 // import { mixinBehaviors } from "@polymer/polymer/lib/legacy/class.js";
 // import { NeonAnimationRunnerBehavior } from "@polymer/neon-animation/neon-animation-runner-behavior.js";
 /**
@@ -23,7 +24,9 @@ class AddFormComponent extends LitElement {
   }
 
   static get styles() {
-    return css`
+    return [
+      genericButtonStyles,
+      css`
       .card {
         display: block;
         background-color: white;
@@ -53,9 +56,13 @@ class AddFormComponent extends LitElement {
       }
 
       .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         padding-left: 11%;
         padding-right: 11%;
-        padding-top: 5%;
+        padding-top: 2vh;
+        height: 84%;
       }
 
       .title {
@@ -66,8 +73,8 @@ class AddFormComponent extends LitElement {
         width: 33%;
       }
 
-      input[type=text], input[type=number], input[type=date], select {
-        padding: 10px 8px;
+      input[type=text], input[type=number], input[type=date], select, textarea {
+        padding: 1.1vh 8px;
         /*margin: 8px 0;*/
         /*display: inline-block;*/
         border: 1px solid #ccc;
@@ -78,12 +85,21 @@ class AddFormComponent extends LitElement {
         color: var(--form-mid-blue);
       }
 
+      textarea {
+        height: 4.5vh;
+      }
+
       input:focus {
           outline: none !important;
           border:1px solid var(--form-mid-blue);
       }
 
       select:focus {
+          outline: none !important;
+          border:1px solid var(--form-mid-blue);
+      }
+
+      textarea:focus {
           outline: none !important;
           border:1px solid var(--form-mid-blue);
       }
@@ -139,7 +155,21 @@ class AddFormComponent extends LitElement {
         width: 20px;
         height: 20px;
       }
-    `;
+
+      .submit-button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+
+      .submit-button {
+        background-color: var(--form-mid-blue);
+        color: var(--milky-white);
+        width: 33%;
+        height: 25px;
+        margin-top: 5%;
+      }
+    `];
   }
 
   render() {
@@ -151,42 +181,49 @@ class AddFormComponent extends LitElement {
         </div>
 
         <div class="form-container">
-          <form action="/action_page.php">
-            <div class="first-row">
-              <div class="form-field-wrapper title">
-                <label for="fname">Title</label>
-                <input type="text">
-              </div>
-              <div class="form-field-wrapper amount">
-                <label for="lname">Amount</label>
-                <input type="number">
-              </div>
+          <div class="first-row">
+            <div class="form-field-wrapper title">
+              <label for="fname">Title</label>
+              <input type="text">
             </div>
-
-            <div class="form-field-wrapper">
-              <label for="category">Category</label>
-              <div class="select-wrapper">
-                <button type="button"  class="custom-indicator">
-                  <iron-icon icon="expand-more" class="custom-indicator-icon"></iron-icon>
-                </button>
-                <select id="category" name="category">
-                  <option value="australia">Australia</option>
-                  <option value="canada">Canada</option>
-                  <option value="usa">USA</option>
-                </select>
-              </div>
+            <div class="form-field-wrapper amount">
+              <label for="lname">Amount</label>
+              <input type="number">
             </div>
+          </div>
 
-            <div class="form-field-wrapper">
-              <label>Category</label>
+          <div class="form-field-wrapper">
+            <label for="category">Category</label>
+            <div class="select-wrapper">
               <button type="button"  class="custom-indicator">
-                <iron-icon icon="perm-contact-calendar" class="custom-indicator-icon"></iron-icon>
+                <iron-icon icon="expand-more" class="custom-indicator-icon"></iron-icon>
               </button>
-              <input type="date" id="execDate" name="execDate">
+              <select id="category" name="category">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+              </select>
             </div>
-          
-            <input type="submit" value="Submit">
-          </form>
+          </div>
+
+          <div class="form-field-wrapper">
+            <label>Category</label>
+            <button type="button"  class="custom-indicator">
+              <iron-icon icon="perm-contact-calendar" class="custom-indicator-icon"></iron-icon>
+            </button>
+            <input type="date" id="execDate" name="execDate">
+          </div>
+
+          <div class="form-field-wrapper">
+            <label>Category</label>
+            <textarea></textarea>
+          </div>
+        
+          <div class="submit-button-container">
+            <button class="btn-generic submit-button">
+              CREATE
+            </button>
+          </div>
         </div>
       </div>
     `;
