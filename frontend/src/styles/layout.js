@@ -26,7 +26,7 @@ export const layoutStyles = css`
     position: relative;
     width: 100vw;
     height: 88.6vh;
-    background-color: #d2ddeb;
+    background-color: var(--section-blue);
   }
   .main-content {
     position: absolute;

@@ -183,7 +183,7 @@ class RootElem extends LitElement {
         
         .list-footer {
           height: 10%;
-          background-color: #a1c4ff;
+          background-color: var(--form-mid-blue);
           color: var(--milky-white);
           display: flex;
           flex-direction: column;
@@ -196,7 +196,7 @@ class RootElem extends LitElement {
           margin-left: 2px;
           margin-right: 2px;
           background-color: var(--milky-white);
-          color: #a1c4ff;
+          color: var(--form-mid-blue);
           padding: 8px 10px;
           font-size: 7px;
           border-radius: 3px;
@@ -224,7 +224,7 @@ class RootElem extends LitElement {
 
         .horizontal-divider {
           width: 100%;
-          border-top: 1px solid #d2ddeb;
+          border-top: 1px solid var(--section-blue);
         }
 
         .search-space {
@@ -257,7 +257,7 @@ class RootElem extends LitElement {
           align-items: center;
           justify-content: center;
           width: 100%;
-          color: #cccccc;
+          color: var(--input-grey);
         }
 
         .input-field {
@@ -276,7 +276,7 @@ class RootElem extends LitElement {
         }
 
         ::placeholder {
-          color: #cccccc;
+          color: var(--input-grey);
         }
 
         .logo-header {

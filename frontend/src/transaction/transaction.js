@@ -58,9 +58,8 @@ class TransactionElem extends LitElement {
       }
 
       .category {
-        border: 1px solid #a1c4ff;
-        color: #a1c4ff;
-        /*padding: 5px;*/
+        border: 1px solid var(--form-mid-blue);
+        color: var(--form-mid-blue);
         padding: 3px 8px 3px 8px;
         text-align: center;
         border-radius: 15px;

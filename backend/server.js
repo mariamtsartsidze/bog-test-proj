@@ -12,9 +12,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
 
-// const store = {};
-// store.transactions = [];
-
 app.get("/transactions", (req, res) => {
   console.log("get transactions: ", req.query);
 

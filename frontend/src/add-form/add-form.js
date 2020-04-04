@@ -1,10 +1,6 @@
 import { LitElement, css, html, unsafeCSS } from 'lit-element';
 import { genericButtonStyles } from '../styles/btn-generic';
-/**
- * @customElement
- * @polymer
- */
-// class AddFormComponent extends mixinBehaviors([NeonAnimationRunnerBehavior], LitElement) {
+
 class AddFormComponent extends LitElement {
   static get properties() {
     return {
@@ -123,11 +119,8 @@ class AddFormComponent extends LitElement {
 
       input[type=text], input[type=number], input[type=date], select, textarea {
         padding: 1.1vh 8px;
-        /*margin: 8px 0;*/
-        /*display: inline-block;*/
         border: 1px solid #ccc;
         border-radius: 4px;
-        /*box-sizing: border-box;*/
         outline: none;
         outline: false;
         color: var(--form-mid-blue);
