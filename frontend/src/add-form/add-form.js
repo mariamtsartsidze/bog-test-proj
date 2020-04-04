@@ -1,5 +1,6 @@
 import { LitElement, css, html, unsafeCSS } from 'lit-element';
 import { genericButtonStyles } from '../styles/btn-generic';
+import { layoutStyles } from '../styles/layout';
 
 class AddFormComponent extends LitElement {
   static get properties() {
@@ -69,13 +70,12 @@ class AddFormComponent extends LitElement {
 
   static get styles() {
     return [
+      layoutStyles,
       genericButtonStyles,
       css`
       .card {
         display: block;
         background-color: white;
-        width: 21vw;
-        height: 42vh;
       }
 
       .add-title {
@@ -215,7 +215,7 @@ class AddFormComponent extends LitElement {
 
   render() {
     return html`
-      <div class="card">
+      <div class="card card-width card-height">
         <div class="upper-row">
           <div class="add-title">ADD NEW PAYMENT</div>
           <iron-icon class="close-icon" icon="close" @click="${this.fireCloseEvent}"></iron-icon>

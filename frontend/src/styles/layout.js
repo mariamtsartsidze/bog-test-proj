@@ -6,50 +6,66 @@ export const layoutStyles = css`
   @media only screen and (max-width: 599px) {
     .responsive-width {width: 100%}
     .user-optional-padding {padding-right: 4px;}
+    .card-width {width: 100vw;}
   }
 
   /** tablet */
   @media only screen and (min-width: 600px) {
     .responsive-width {width: 80vw}
     .user-optional-padding {padding-right: 0px;}
+    .card-width {width: 50vw;}
   }
 
   /** smaller desktop */
   @media only screen and (min-width: 768px) {
     .responsive-width {width: 60vw}
     .user-optional-padding {padding-right: 0px;}
+    .card-width {width: 40vw;}
   }
 
   /** desktop */
   @media only screen and (min-width: 1000px) {
+    .responsive-width {width: 60vw}
+    .user-optional-padding {padding-right: 0px;}
+    .card-width {width: 29vw;}
+  }
+
+  /** bigger desktop */
+  @media only screen and (min-width: 1300px) {
     .responsive-width {width: 44vw}
     .user-optional-padding {padding-right: 0px;}
+    .card-width {width: 21vw;}
   }
 
   /** heights */
   /** smaller mobile */
   @media only screen and (max-height: 619px) {
     .responsive-height {height: 80vh;}
+    .card-height {height: 50vh;}
   }
 
   /** mobile */
   @media only screen and (min-height: 620px) {
     .responsive-height {height: 70vh;}
+    .card-height {height: 50vh;}
   }
 
   /** desktop */
   @media only screen and (min-height: 800px) {
     .responsive-height {height: 56.1vh;}
+    .card-height {height: 42vh;}
   }
 
   /** tablet */
   @media only screen and (min-height: 1000px) {
     .responsive-height {height: 50vh;}
+    .card-height {height: 42vh;}
   }
 
   /** longer tablet */
   @media only screen and (min-height: 1150px) {
     .responsive-height {height: 40vh;}
+    .card-height {height: 40vh;}
   }
 
 
