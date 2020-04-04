@@ -280,7 +280,6 @@ class RootElem extends LitElement {
         }
 
         .logo-header {
-          width: 44vw;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -333,19 +332,19 @@ class RootElem extends LitElement {
   render() {
     return html`
       <div class="header">
-        <div class="logo-header">
+        <div class="logo-header responsive-width">
           <div id="con" class="logo-container" @click="${this.clearFilters}">
             <iron-image class="logo" sizing="contain" fade src="src/images/home.png">
             </iron-image>
             <paper-tooltip for="con">Reset Filters</paper-tooltip>
           </div>
-          <div>
+          <div class="user-optional-padding">
             hello user
           </div>
         </div>
       </div>
       <div class="section">
-        <div class="main-content">
+        <div class="main-content responsive-width responsive-height">
           <div class="list-actions">
             <button class="add-button btn-generic" @click="${this.turnOnOverlay}">
               <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>

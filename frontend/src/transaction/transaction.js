@@ -1,4 +1,6 @@
 import { LitElement, css, html, unsafeCSS } from 'lit-element';
+import { layoutStyles } from '../styles/layout';
+
 /**
  * @customElement
  * @polymer
@@ -24,121 +26,122 @@ class TransactionElem extends LitElement {
   }
 
   static get styles() {
-    return css`
-      .host {
-        width: 100%;
-        display: block;
-      }
+    return [
+      layoutStyles,
+      css`
+        .host {
+          width: 100%;
+          display: block;
+        }
 
-      .open {
-        height: 34%;
-        background-color: #f3f4f8;
-      }
+        .open {
+          height: 34%;
+          background-color: #f3f4f8;
+        }
 
-      .closed {
-        height: 18%;
-        background-color: var(--milky-white);
-      }
+        .closed {
+          height: 18%;
+          background-color: var(--milky-white);
+        }
 
-      .main-content-row {
-        padding-left: 16px;
-        padding-right: 8px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
+        .main-content-row {
+          padding-left: 16px;
+          padding-right: 8px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
 
-      .title-row {
-        padding-top: 10px;
-      }
+        .title-row {
+          padding-top: 10px;
+        }
 
-      .amount-row {
-        padding-top: 3px;
-      }
+        .amount-row {
+          padding-top: 3px;
+        }
 
-      .category {
-        border: 1px solid var(--form-mid-blue);
-        color: var(--form-mid-blue);
-        padding: 3px 8px 3px 8px;
-        text-align: center;
-        border-radius: 15px;
-        font-size: 9px;
-      }
+        .category {
+          border: 1px solid var(--form-mid-blue);
+          color: var(--form-mid-blue);
+          padding: 3px 8px 3px 8px;
+          text-align: center;
+          border-radius: 15px;
+          font-size: 9px;
+        }
 
-      .title {
-        color: var(--mild-black);
-        font-size: 15px;
-      }
+        .title {
+          color: var(--mild-black);
+          font-size: 15px;
+        }
 
-      .exec-date {
-        color: var(--transaction-grey);
-        font-size: 11px;
-      }
+        .exec-date {
+          color: var(--transaction-grey);
+          font-size: 11px;
+        }
 
-      .amount {
-        color: red;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-      }
+        .amount {
+          color: red;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: center;
+        }
 
-      .currency {
-        font-size: 9px;
-        line-height: 7px;
-      }
+        .currency {
+          font-size: 9px;
+          line-height: 7px;
+        }
 
-      .comment {
-        padding-left: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        margin-top: 16px;
-        font-size: 12px;
-        line-height: 15px;
-      }
+        .comment {
+          padding-left: 20px;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 16px;
+          font-size: 12px;
+          line-height: 15px;
+        }
 
-      .visible {
-        display: block;
-      }
+        .visible {
+          display: block;
+        }
 
-      .hidden {
-        display: none;
-      }
+        .hidden {
+          display: none;
+        }
 
-      .comment-tag {
-        color: var(--mild-black);
-      }
+        .comment-tag {
+          color: var(--mild-black);
+        }
 
-      .comment-text {
-        color: var(--transaction-grey);
-      }
-    `;
+        .comment-text {
+          color: var(--transaction-grey);
+        }
+      `
+    ];
   }
 
   render() {
     return html`
       <div class="${this.open ? 'open' : 'closed'} host">
-        <div class="main-content">
-          <div class="main-content-row title-row">
-            <div class="title">${this.transaction.title}</div>
-            <div class="exec-date">${this.getDate(this.transaction.execDate)}</div>
-          </div>
-          <div class="main-content-row amount-row">
-            <div class="category">${this.transaction.category}</div>
-            <div class="amount">
-              <div>
-                ${-this.transaction.amount}
-              </div>
-              <div class="currency">GEL</div>
+        <div class="main-content-row title-row">
+          <div class="title">${this.transaction.title}</div>
+          <div class="exec-date">${this.getDate(this.transaction.execDate)}</div>
+        </div>
+        <div class="main-content-row amount-row">
+          <div class="category">${this.transaction.category}</div>
+          <div class="amount">
+            <div>
+              ${-this.transaction.amount}
             </div>
+            <div class="currency">GEL</div>
           </div>
-          <div class="${this.open ? 'visible' : 'hidden'} comment">
-            <div class="comment-tag">comment:</div>
-            <div class="comment-text">${this.transaction.comment}</div>
-          </div>
+        </div>
+        <div class="${this.open ? 'visible' : 'hidden'} comment">
+          <div class="comment-tag">comment:</div>
+          <div class="comment-text">${this.transaction.comment}</div>
         </div>
       </div>
     `;
