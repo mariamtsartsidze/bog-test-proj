@@ -350,7 +350,7 @@ class RootElem extends LitElement {
               <iron-icon class="add-icon" icon="add-circle-outline"></iron-icon>
               <div>ADD PAYMENT</div>
             </button>
-            <div class="vertical-divider"></div>
+            <div class="vertical-divider vert-div-vis"></div>
             <div style="flex-grow: 1"></div>
             <div class="vertical-divider"></div>
             <div class="search-space">

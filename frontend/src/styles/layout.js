@@ -7,13 +7,23 @@ export const layoutStyles = css`
     .responsive-width {width: 100%}
     .user-optional-padding {padding-right: 4px;}
     .card-width {width: 100vw;}
+    .vert-div-vis {display: block}
   }
+  /** tiny-mobile */
+  @media only screen and (max-width: 360px) {
+    .responsive-width {width: 100%}
+    .user-optional-padding {padding-right: 4px;}
+    .card-width {width: 100vw;}
+    .vert-div-vis {display: none}
+  }
+
 
   /** tablet */
   @media only screen and (min-width: 600px) {
     .responsive-width {width: 80vw}
     .user-optional-padding {padding-right: 0px;}
     .card-width {width: 50vw;}
+    .vert-div-vis {display: block}
   }
 
   /** smaller desktop */
@@ -21,6 +31,7 @@ export const layoutStyles = css`
     .responsive-width {width: 60vw}
     .user-optional-padding {padding-right: 0px;}
     .card-width {width: 40vw;}
+    .vert-div-vis {display: block}
   }
 
   /** desktop */
@@ -28,6 +39,7 @@ export const layoutStyles = css`
     .responsive-width {width: 60vw}
     .user-optional-padding {padding-right: 0px;}
     .card-width {width: 29vw;}
+    .vert-div-vis {display: block}
   }
 
   /** bigger desktop */
@@ -35,6 +47,7 @@ export const layoutStyles = css`
     .responsive-width {width: 44vw}
     .user-optional-padding {padding-right: 0px;}
     .card-width {width: 21vw;}
+    .vert-div-vis {display: block}
   }
 
   /** heights */
