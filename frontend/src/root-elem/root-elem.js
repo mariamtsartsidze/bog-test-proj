@@ -51,13 +51,14 @@ class RootElem extends LitElement {
   }
 
   set totalAmount(val) {
+    console.log('updating totalAmount: ', val, typeof (val));
     let oldVal = this._totalAmount;
     this._totalAmount = val;
     this.requestUpdate('totalAmount', oldVal);
   }
 
   get totalAmount() {
-    return this._totalAmount.toFixed(2);
+    return (this._totalAmount).toFixed(2);
   }
 
   set openTransactionIndex(val) {
@@ -90,7 +91,7 @@ class RootElem extends LitElement {
   }
 
   getFilteredTransactions() {
-    var req = new XMLHttpRequest();
+    const req = new XMLHttpRequest();
     req.responseType = 'json';
     req.open('GET', `http://localhost:3000/transactions?filter=${this.filterStr}`, true);
     req.onload = () => {
@@ -126,6 +127,25 @@ class RootElem extends LitElement {
 
   turnOffOverlay() {
     this.addFormOpen = false;
+  }
+
+  saveTransaction(e) {
+    const item = e.detail.item;
+    item.amount = +item.amount;
+
+    const toJson = JSON.stringify(item);
+
+    const req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('POST', `http://localhost:3000/transactions`, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.onload = () => {
+      item.id = req.response.id;
+      item.execDate = item.execDate === '' ? dateFormat(new Date(), 'yyyy-mm-dd') : item.execDate;
+      this.transactions = [item, ...this.transactions];
+      this.totalAmount = this._totalAmount + item.amount;
+    };
+    req.send(toJson);
   }
 
   static get styles() {
@@ -359,7 +379,7 @@ class RootElem extends LitElement {
       </div>
       <div class="${this.addFormOpen ? 'visible' : 'hidden'} overlay">
         <div class="overlay-form">
-          <add-form @form-closed="${this.turnOffOverlay}"></add-form>
+          <add-form @form-closed="${this.turnOffOverlay}" @item-saved="${this.saveTransaction}"></add-form>
         </div>
       </div>
     `;

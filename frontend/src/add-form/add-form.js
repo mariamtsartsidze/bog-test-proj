@@ -1,7 +1,5 @@
 import { LitElement, css, html, unsafeCSS } from 'lit-element';
 import { genericButtonStyles } from '../styles/btn-generic';
-// import { mixinBehaviors } from "@polymer/polymer/lib/legacy/class.js";
-// import { NeonAnimationRunnerBehavior } from "@polymer/neon-animation/neon-animation-runner-behavior.js";
 /**
  * @customElement
  * @polymer
@@ -10,17 +8,67 @@ import { genericButtonStyles } from '../styles/btn-generic';
 class AddFormComponent extends LitElement {
   static get properties() {
     return {
-      prop1: { type: String },
+      title: { type: String },
+      amount: { type: Number },
+      category: { type: String },
+      execDate: { type: String },
+      comment: { type: String }
     };
   }
 
   constructor() {
     super();
-    this.prop1 = 'amanda'
+    this.resetForm();
   }
 
   fireCloseEvent() {
     this.dispatchEvent(new CustomEvent('form-closed', { detail: { open: false } }));
+  }
+
+  resetForm() {
+    this.title = '';
+    this.amount = 0;
+    this.category = '';
+    this.execDate = dateFormat(new Date(), 'yyyy-mm-dd');
+    this.comment = '';
+  }
+
+  fireSaveEvent() {
+    console.log('firing');
+    console.log('event fired', this.title, this.amount, this.category, this.execDate, this.comment);
+    this.dispatchEvent(new CustomEvent('item-saved', {
+      detail: {
+        item: {
+          title: this.title,
+          amount: this.amount,
+          category: this.category,
+          execDate: this.execDate,
+          comment: this.comment
+        }
+      }
+    }));
+    this.resetForm();
+    this.fireCloseEvent();
+  }
+
+  handleTitle(e) {
+    this.title = e.target.value;
+  }
+
+  handleAmount(e) {
+    this.amount = e.target.value;
+  }
+
+  handleCategory(e) {
+    this.category = e.target.value;
+  }
+
+  handleExecDate(e) {
+    this.execDate = e.target.value;
+  }
+
+  handleComment(e) {
+    this.comment = e.target.value;
   }
 
   static get styles() {
@@ -184,11 +232,12 @@ class AddFormComponent extends LitElement {
           <div class="first-row">
             <div class="form-field-wrapper title">
               <label for="fname">Title</label>
-              <input type="text">
+              <input type="text" .value="${this.title}" @input=${this.handleTitle}>
             </div>
+
             <div class="form-field-wrapper amount">
               <label for="lname">Amount</label>
-              <input type="number">
+              <input type="number" .value="${this.amount}" @input=${this.handleAmount}>
             </div>
           </div>
 
@@ -198,29 +247,31 @@ class AddFormComponent extends LitElement {
               <button type="button"  class="custom-indicator">
                 <iron-icon icon="expand-more" class="custom-indicator-icon"></iron-icon>
               </button>
-              <select id="category" name="category">
-                <option value="australia">Australia</option>
-                <option value="canada">Canada</option>
-                <option value="usa">USA</option>
+              <select id="category" name="category" .value="${this.category}" @input=${this.handleCategory}>
+                <option value="payment service">payment service</option>
+                <option value="gasoline">gasoline</option>
+                <option value="food">food</option>
+                <option value="charity">charity</option>
+                <option value="transport">transport</option>
               </select>
             </div>
           </div>
 
           <div class="form-field-wrapper">
-            <label>Category</label>
+            <label>Date</label>
             <button type="button"  class="custom-indicator">
               <iron-icon icon="perm-contact-calendar" class="custom-indicator-icon"></iron-icon>
             </button>
-            <input type="date" id="execDate" name="execDate">
+            <input type="date" id="execDate" name="execDate" .value="${this.execDate}" @input=${this.handleExecDate}>
           </div>
 
           <div class="form-field-wrapper">
-            <label>Category</label>
-            <textarea></textarea>
+            <label>Comment</label>
+            <textarea .value="${this.comment}" @input=${this.handleComment}></textarea>
           </div>
         
           <div class="submit-button-container">
-            <button class="btn-generic submit-button">
+            <button class="btn-generic submit-button" @click="${this.fireSaveEvent}">
               CREATE
             </button>
           </div>

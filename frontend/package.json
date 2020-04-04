@@ -8,6 +8,7 @@
     "@polymer/paper-listbox": "^3.0.1",
     "@polymer/paper-tooltip": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
+    "dateformat": "^3.0.3",
     "lit-element": "^2.2.1",
     "minimist": "^1.2.5",
     "web-animations-js": "^2.3.2"

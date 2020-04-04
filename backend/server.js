@@ -2,10 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const _ = require("lodash");
 const store = require("./starterTransactions");
+const cors = require('cors');
+const { uuid } = require('uuidv4');
+const dateFormat = require('dateformat');
 const port = 3000;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
+app.options('*', cors());
 
 // const store = {};
 // store.transactions = [];
@@ -20,7 +25,6 @@ app.get("/transactions", (req, res) => {
       transaction.category.includes(req.query.filter)
     )
   res.status(200);
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.send({ transactions: filteredTransactions });
 });
 
@@ -28,15 +32,17 @@ app.get("/transactions", (req, res) => {
 app.post("/transactions", (req, res) => {
   console.log('add transaction: ', req.body);
 
-  let transLen = store.transactions.length;
-  let newAccountId = transLen ? store.transactions[transLen - 1].id + 1 : 1
+  let newAccountId = uuid()
 
   let newAccount = _.cloneDeep(req.body);
   newAccount.id = newAccountId;
+  newAccount.amount = +newAccount.amount;
+  if (newAccount.execDate === '') {
+    newAccount.execDate = dateFormat(new Date(), 'yyyy-mm-dd');
+  }
 
-  store.transactions.push(newAccount);
+  store.transactions = [newAccount, ...store.transactions];
   res.status(200);
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.send({ id: newAccountId });
 });
 
@@ -48,7 +54,6 @@ app.put("/transactions/:id", (req, res) => {
   let indexToUpdate = store.transactions.findIndex((transaction) => transaction.id === transactionId)
   Object.assign(store.transactions[indexToUpdate], req.body);
   res.status(200);
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.send({ value: store.transactions[indexToUpdate] });
 });
 
@@ -58,7 +63,6 @@ app.delete("/transactions/:id", (req, res) => {
 
   store.transactions = store.transactions.filter(transaction => transaction.id !== +req.params.id);
   res.status(200);
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.send();
 });
 

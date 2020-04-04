@@ -1,50 +1,50 @@
 {
   "transactions": [
     {
-      "id": 1,
+      "id": "b0beccb6-2780-4265-b44e-4fb7d36965c0",
       "title": "my payment title",
       "category": "payment service",
-      "execDate": "2016-05-18T16:00:00Z",
+      "execDate": "2019-05-18",
       "comment": "simple comment",
       "amount": 100
     },
     {
-      "id": 2,
+      "id": "2f5b91da-b022-40fc-b270-50218967f596",
       "title": "my payment a bit longer",
       "category": "gasoline",
-      "execDate": "2017-05-18T16:00:00Z",
+      "execDate": "2018-05-18",
       "comment": "simple comment - very simple",
       "amount": 101
     },
     {
-      "id": 3,
+      "id": "e4f84396-473b-41b2-8849-ee76064942b5",
       "title": "my payment a bit longer title (longer than second)",
       "category": "food",
-      "execDate": "2018-05-18T16:00:00Z",
+      "execDate": "2018-05-18",
       "comment": "simple comment - quite simple",
       "amount": 102
     },
     {
-      "id": 4,
+      "id": "bac0f145-47a9-4576-993e-0bf1a421db5a",
       "title": "tester4",
       "category": "charity",
-      "execDate": "2018-06-18T16:00:00Z",
+      "execDate": "2017-06-18",
       "comment": "simple comment - pretty simple",
       "amount": 103
     },
     {
-      "id": 5,
+      "id": "1b6b7b47-ec5a-44d9-90ad-8011b4d213ad",
       "title": "tester5",
       "category": "transport",
-      "execDate": "2016-05-19T16:00:00Z",
+      "execDate": "2016-05-19",
       "comment": "simple comment",
       "amount": 104.6
     },
     {
-      "id": 6,
+      "id": "5669c473-9b55-4678-a4bf-6edac3e41427",
       "title": "tester6",
       "category": "transport",
-      "execDate": "2019-08-18T16:00:00Z",
+      "execDate": "2015-08-18",
       "comment": "simple comment",
       "amount": 104.6
     }

@@ -131,7 +131,7 @@ class TransactionElem extends LitElement {
             <div class="category">${this.transaction.category}</div>
             <div class="amount">
               <div>
-                -${this.transaction.amount}
+                ${-this.transaction.amount}
               </div>
               <div class="currency">GEL</div>
             </div>
