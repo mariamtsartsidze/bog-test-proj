@@ -25,14 +25,12 @@ class AddFormComponent extends LitElement {
   resetForm() {
     this.title = '';
     this.amount = 0;
-    this.category = '';
+    this.category = 'payment service';
     this.execDate = dateFormat(new Date(), 'yyyy-mm-dd');
     this.comment = '';
   }
 
   fireSaveEvent() {
-    console.log('firing');
-    console.log('event fired', this.title, this.amount, this.category, this.execDate, this.comment);
     this.dispatchEvent(new CustomEvent('item-saved', {
       detail: {
         item: {

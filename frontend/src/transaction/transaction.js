@@ -21,7 +21,6 @@ class TransactionElem extends LitElement {
     const date = new Date(dateTimeStr)
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
-    console.log(dateTimeFormat.format(date));
     return 'on ' + dateTimeFormat.format(date);
   }
 
@@ -127,7 +126,7 @@ class TransactionElem extends LitElement {
     return html`
       <div class="${this.open ? 'open' : 'closed'} host">
         <div class="main-content-row title-row">
-          <div class="title">${this.transaction.title}</div>
+          <div class="title">${this.transaction.title === '' ? '[no title]' : this.transaction.title}</div>
           <div class="exec-date">${this.getDate(this.transaction.execDate)}</div>
         </div>
         <div class="main-content-row amount-row">

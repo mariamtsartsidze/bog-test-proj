@@ -9,6 +9,7 @@ export const layoutStyles = css`
     .card-width {width: 100vw;}
     .vert-div-vis {display: block}
   }
+
   /** tiny-mobile */
   @media only screen and (max-width: 360px) {
     .responsive-width {width: 100%}
@@ -16,7 +17,6 @@ export const layoutStyles = css`
     .card-width {width: 100vw;}
     .vert-div-vis {display: none}
   }
-
 
   /** tablet */
   @media only screen and (min-width: 600px) {

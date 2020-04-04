@@ -29,29 +29,24 @@ class RootElem extends LitElement {
   }
 
   set transactions(val) {
-    console.log('gona set val: ', val);
     let oldVal = this._transactions;
     this._transactions = [...val];
     this.requestUpdate('transactions', oldVal);
   }
 
   get transactions() {
-    console.log('im getting: ', this._transactions);
     return this._transactions;
   }
 
   set filterStr(val) {
-    console.log('setting filterstr: ', val);
     this._filterStr = val;
   }
 
   get filterStr() {
-    console.log('getting filterstr');
     return this._filterStr;
   }
 
   set totalAmount(val) {
-    console.log('updating totalAmount: ', val, typeof (val));
     let oldVal = this._totalAmount;
     this._totalAmount = val;
     this.requestUpdate('totalAmount', oldVal);
@@ -76,7 +71,6 @@ class RootElem extends LitElement {
   }
 
   set addFormOpen(val) {
-    console.log('vsetav: ', val);
     let oldVal = this._addFormOpen;
     this._addFormOpen = val;
     this.requestUpdate('addFormOpen', oldVal);
@@ -96,7 +90,6 @@ class RootElem extends LitElement {
     req.open('GET', `http://localhost:3000/transactions?filter=${this.filterStr}`, true);
     req.onload = () => {
       this.transactions = req.response.transactions;
-      console.log('transactions: ', this.transactions);
       this.updatetotalAmount();
     };
     req.send(null);
@@ -111,13 +104,11 @@ class RootElem extends LitElement {
     let total = 0;
     this.transactions.forEach(val => {
       total += val.amount;
-      console.log(total);
     });
     this.totalAmount = total;
   }
 
   transactionClicked(index) {
-    console.log(index);
     this.openTransactionIndex = index;
   }
 
@@ -207,7 +198,6 @@ class RootElem extends LitElement {
 
         /* Darker background on mouse-over */
         .add-button:hover {
-          /*background-color: #fafafa; /** f5f5f5, f7f7f7, fafafa */
           background-color: #f5f5f5;
         }
 
