@@ -161,8 +161,18 @@ class RootElem extends LitElement {
           align-items: center;
         }
 
-        .records-num {
+        .records-num-wrapper {
           height: 9%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-end;
+          color: var(--mild-black);
+        }
+
+        .records-num {
+          font-size: 20px;
+          padding-bottom: 7px;
+          padding-left: 2px;
         }
 
         .cards-holder {
@@ -357,7 +367,9 @@ class RootElem extends LitElement {
               </button>
             </div>
           </div>
-          <div class="records-num"></div>
+          <div class="records-num-wrapper">
+            <div class="records-num">${this.transactions.length} records found</div>
+          </div>
           <div class="cards-holder">
             ${this.transactions.map((transaction, index) => html`
               <transaction-elem .transaction=${transaction} .open=${this.openTransactionIndex === index ? true : false} @click="${() => this.transactionClicked(index)}">
