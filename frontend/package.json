@@ -1,7 +1,8 @@
 {
   "name": "frontend",
   "scripts": {
-    "start:dev": "NODE_ENV=development polymer serve"
+    "start:dev": "NODE_ENV=development polymer serve",
+    "build": "polymer build"
   },
   "dependencies": {
     "@polymer/iron-icons": "^3.0.1",
