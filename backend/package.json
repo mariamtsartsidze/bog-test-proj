@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "NODE_ENV=development node-dev server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,9 @@
     "minimist": "^1.2.5",
     "node-dev": "^4.0.0",
     "uuidv4": "^6.0.7"
+  },
+  "devDependencies": {
+    "flightplan": "^0.6.20",
+    "fly": "^4.1.3"
   }
 }

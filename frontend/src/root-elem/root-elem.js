@@ -2,7 +2,7 @@ import { LitElement, css, html } from 'lit-element';
 import { genericButtonStyles } from '../styles/btn-generic';
 import { layoutStyles } from '../styles/layout';
 import '../transaction/transaction';
-import '../add-form/add-form'
+import '../add-form/add-form';
 
 
 class RootElem extends LitElement {

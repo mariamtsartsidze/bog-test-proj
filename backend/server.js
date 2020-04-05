@@ -10,7 +10,9 @@ const port = 3000;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.options('*', cors());
+if (process.env.NODE_ENV === 'development') {
+  app.options('*', cors());
+}
 
 app.get("/transactions", (req, res) => {
   console.log("get transactions: ", req.query);
