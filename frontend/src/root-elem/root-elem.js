@@ -8,6 +8,7 @@ import '../add-form/add-form';
 class RootElem extends LitElement {
   static get properties() {
     return {
+      apiBaseUrl: { type: String },
       transactions: { type: Array },
       filterStr: { type: String },
       totalAmount: { type: Number },
@@ -16,8 +17,11 @@ class RootElem extends LitElement {
     };
   }
 
+
   constructor() {
     super();
+
+    this.apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'http://134.122.95.252:3000';
 
     this._filterStr = '';
     this._transactions = [];
